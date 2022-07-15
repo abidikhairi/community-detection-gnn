@@ -24,7 +24,9 @@ def features_file_to_tensor(features_file, num_nodes):
     return th.from_numpy(feats)
 
 
-def adjacency_to_nxg(adj):
+def adjacency_to_nxg(adj_file):
+    adj = th.load(adj_file)
+    
     if th.is_tensor(adj):
         adj = adj.numpy()
 
