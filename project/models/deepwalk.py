@@ -22,9 +22,14 @@ class DeepWalk():
     def train(self):
         walks = self.walker.simulate_walks()
         model = Word2Vec(walks, vector_size=self.vector_size, window=self.window_size, min_count=1, sg=1, workers=4, epochs=self.epochs, negative=self.negatives)
-        import pdb; pdb.set_trace()
-        self.embedding = model.wv
+        keys = model.wv.key_to_index
+        embeddings = th.zeros(len(keys), self.vector_size)
+
+        for key, idx in keys.items():
+            embeddings[idx] = th.tensor(model.wv[key])
+
+        self.embedding = embeddings
 
 
     def save_embeddings(self, filename):
-        th.save(th.from_numpy(self.embedding), filename)
+        th.save(self.embedding, filename)

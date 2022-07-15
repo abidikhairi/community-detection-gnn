@@ -12,7 +12,7 @@ class RandomWalker:
     def get_random_walk(self, start) -> list:
         walk = [start]
         while len(walk) < self.walk_length:
-            neighbors = self.graph.neighbors(walk[-1])
+            neighbors = list(self.graph.neighbors(walk[-1]))
             if len(neighbors) == 0:
                 next = walk[-1]
             else:
