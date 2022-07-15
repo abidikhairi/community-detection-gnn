@@ -1,3 +1,4 @@
+import networkx as nx
 import numpy as np
 import torch as th
 
@@ -21,3 +22,12 @@ def features_file_to_tensor(features_file, num_nodes):
     feats[idx] = features
     
     return th.from_numpy(feats)
+
+
+def adjacency_to_nxg(adj):
+    if th.is_tensor(adj):
+        adj = adj.numpy()
+
+    graph = nx.from_numpy_array(adj)
+
+    return graph
