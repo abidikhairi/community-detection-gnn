@@ -23,9 +23,10 @@ class RandomWalker:
 
 
     def simulate_walks(self) -> list:
-        nodes = random.shuffle(list(self.graph.nodes()))
+        nodes = list(self.graph.nodes())
+        random.shuffle(nodes)
+        
         walks = []
-
         for node in nodes:
             for _ in range(self.num_walks):
                 walks.append(self.get_random_walk(node))
