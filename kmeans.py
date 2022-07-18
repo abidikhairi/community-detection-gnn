@@ -1,5 +1,4 @@
 import argparse
-import numpy as np
 import torch as th
 from sklearn.cluster import KMeans
 from sklearn.model_selection import train_test_split
