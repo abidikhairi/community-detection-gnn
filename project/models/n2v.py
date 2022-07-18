@@ -26,7 +26,7 @@ class Node2VecTrainer():
             num_walks=self.num_walks, p=self.p, q=self.q
         )
 
-        model.fit(epochs=self.epochs, window=self.window_size, negative=self.negatives)
+        model = model.fit(epochs=self.epochs, window=self.window_size, negative=self.negatives)
         keys = model.wv.key_to_index
         embeddings = th.zeros(len(keys), self.vector_size)
 
