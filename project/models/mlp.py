@@ -1,3 +1,4 @@
+import torch as th
 import torch.nn as nn
 
 
@@ -8,4 +9,4 @@ class Perceptron(nn.Module):
         self.linear = nn.Linear(nfeats, ncomms, bias=False)
 
     def forward(self, x):
-        return self.linear(x)
+        return th.sigmoid(self.linear(x))
