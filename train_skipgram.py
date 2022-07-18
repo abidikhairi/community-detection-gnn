@@ -28,15 +28,15 @@ def main(args):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('--adj', type=str, help='Path to adjacency matrix')
-    parser.add_argument('--model', type=str, choices=['deepwalk', 'node2vec'], help='Model to train (Deepwalk or Node2Vec)')
+    parser.add_argument('--adj', type=str, required=True, help='Path to adjacency matrix')
+    parser.add_argument('--model', type=str, required=True, choices=['deepwalk', 'node2vec'], help='Model to train (Deepwalk or Node2Vec)')
     parser.add_argument('--num-walks', type=int, default=10, help='Number of random walks to use. Defaults: 10')
     parser.add_argument('--walk-length', type=int, default=10, help='Length of each random walk. Defaults: 10')
     parser.add_argument('--vector-size', type=int, default=128, help='Dimension of the embedding vectors. Defaults: 128')
     parser.add_argument('--epochs', type=int, default=10, help='Number of epochs to train. Defaults: 10')
     parser.add_argument('--window-size', type=int, default=10, help='Window size for skipgram. Defaults: 10')
     parser.add_argument('--negatives', type=int, default=5, help='Number of negative examples to use. Defaults: 5')
-    parser.add_argument('--output', type=str, help='Path to output embeddings')
+    parser.add_argument('--output', type=str, required=True, help='Path to output embeddings')
 
     args = parser.parse_args()
     main(args)
