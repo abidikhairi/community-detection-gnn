@@ -14,6 +14,8 @@ class GraphConvolutionLayer(nn.Module):
         self.weight = nn.Parameter(th.FloatTensor(in_feats, out_feats))
         self.bias = nn.Parameter(th.FloatTensor(out_feats))
 
+        self.reset_parameters() 
+
     
     def reset_parameters(self):
         stdv = math.sqrt(self.out_feats)
