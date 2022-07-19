@@ -1,3 +1,4 @@
+import json
 import networkx as nx
 import numpy as np
 import torch as th
@@ -33,3 +34,8 @@ def adjacency_to_nxg(adj_file):
     graph = nx.from_numpy_array(adj)
 
     return graph
+
+
+def load_communities(path):
+    with open(path) as stream:
+        return json.load(stream)
