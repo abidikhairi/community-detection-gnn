@@ -39,3 +39,12 @@ def adjacency_to_nxg(adj_file):
 def load_communities(path):
     with open(path) as stream:
         return json.load(stream)
+
+
+def normalize_adj(adj: th.Tensor):
+    adj.fill_diagonal_(0) # remove self-loops if exists
+
+    deg_invrt_sqrt = th.diag(th.pow(th.sum(adj, dim=0), -0.5))
+    adj = adj + th.eye()
+
+    return th.matmul(th.matmul(deg_invrt_sqrt, adj), deg_invrt_sqrt)
