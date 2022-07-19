@@ -34,15 +34,17 @@ class GraphConvolutionLayer(nn.Module):
 
 
 class GCN(nn.Module):
-    def __init__(self, nfeats, nhids, nclasses) -> None:
+    def __init__(self, nfeats, nhids, nclasses, adj) -> None:
         super().__init__()
+
+        self.adj = adj
 
         self.conv1 = GraphConvolutionLayer(nfeats, nhids)
         self.conv2 = GraphConvolutionLayer(nhids, nclasses)
 
 
-    def forward(self, adj, x):
-        x = th.relu(self.conv1(adj, x))
-        x = self.conv2(adj, x)
+    def forward(self, x):
+        x = th.relu(self.conv1(self.adj, x))
+        x = self.conv2(self.adj, x)
 
         return x
