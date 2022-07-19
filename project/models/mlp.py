@@ -9,4 +9,4 @@ class Perceptron(nn.Module):
         self.linear = nn.Linear(nfeats, ncomms, bias=False)
 
     def forward(self, x):
-        return th.sigmoid(self.linear(x))
+        return self.linear(x)
