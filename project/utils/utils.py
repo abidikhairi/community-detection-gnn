@@ -42,9 +42,8 @@ def load_communities(path):
 
 
 def normalize_adj(adj: th.Tensor):
-    adj.fill_diagonal_(0) # remove self-loops if exists
+    adj.fill_diagonal_(1) # add self-loops if exists
 
     deg_invrt_sqrt = th.diag(th.pow(th.sum(adj, dim=0), -0.5))
-    adj = adj + th.eye(adj.shape[0])
 
     return th.matmul(th.matmul(deg_invrt_sqrt, adj), deg_invrt_sqrt)
