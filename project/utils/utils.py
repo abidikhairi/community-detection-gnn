@@ -47,3 +47,16 @@ def normalize_adj(adj: th.Tensor):
     deg_invrt_sqrt = th.diag(th.pow(th.sum(adj, dim=0), -0.5))
 
     return th.matmul(th.matmul(deg_invrt_sqrt, adj), deg_invrt_sqrt)
+
+
+def get_predicted_communities(F: th.Tensor, threshold: float = 0.5):
+    pos = th.argwhere(F > threshold).tolist()
+    y_hat = {}
+
+    for node, community in pos:
+        if community not in y_hat:
+            y_hat[community] = []
+
+        y_hat[community].append(node)
+
+    return y_hat
